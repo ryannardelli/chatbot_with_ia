@@ -1,6 +1,15 @@
 /* src/index.css ou src/App.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    font-size: 26px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,20 +19,65 @@
 
 body {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
 }
 
+#chatbot-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 35px;
+    border: none;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #6A5ACD;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+
+#chatbot-toggler span {
+    position: absolute;
+    color: #fff;
+}
+
+.container.container.show-chatbot #chatbot-toggler {
+    transform: rotate(90deg);
+}
+
+#chatbot-toggler span:last-child,
+.container.container.show-chatbot #chatbot-toggler span:first-child {
+    opacity: 0;
+}
+
+.container.container.show-chatbot #chatbot-toggler span:last-child {
+    opacity: 1;
+}
+
 .chatbot-popup {
-    position: relative;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    bottom: 90px;
+    right: 35px;
     width: 420px;
     overflow: hidden;
     background: #fff;
     border-radius: 15px;
     box-shadow: 0 0 128px rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    transform: scale(0.2);
+    transform-origin: bottom right;
+    transition: all 0.1s ease;
+}
+
+.container.show-chatbot .chatbot-popup {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 .chatbot-popup .chat-header {
@@ -180,4 +234,25 @@ body {
 
 .chat-form .message-input:valid ~ button {
     display: block;
+}
+
+@media (max-width: 520px) {
+    .chatbot-popup {
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-body {
+        height: calc(100vh - 150px);
+    }
+
+    .chat-footer {
+        padding: 15px;
+    }
 }

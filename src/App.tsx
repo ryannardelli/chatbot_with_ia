@@ -1,12 +1,14 @@
 import ChatbotIcon from "./components/ChatbotIcon";
 import './App.css';
 import ChatForm from "./components/ChatForm";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatMessage from "./components/ChatMessage";
 
 function App() {
 
   const [chatHistory, setChatHistory] = useState<{ role: string; text: string }[]>([]);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const chatBodyRef = useRef<HTMLDivElement>(null);
 
   const updateHistory = (text: string) => {
      setChatHistory((prevHistory) => [
@@ -59,50 +61,30 @@ function App() {
   }
 };
 
-
-
-//   const generateBotResponse = async (history) => {
-
-//   // history = history.map(({ role, text }) => ({ role, parts: [{text}]}));
-//   history = history.map(({ role, text }) => ({ role, content: text }));
-
-
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`
-//     },
-//     body: JSON.stringify({
-//       model: "gpt-3.5-turbo",
-//       messages: history
-//     })
-//   };
-
-//   try {
-//     const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
-//     const data = await response.json();
-//     if (!response.ok) throw new Error(data.error?.message || 'Failed to fetch response');
-
-//     const apiResponse = data.choices[0].message.content.replace(/<[^>]*>/g, '').trim();
-//     updateHistory(apiResponse);
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
+useEffect(() => {
+  if (chatBodyRef.current) {
+    chatBodyRef.current.scrollTo({ top: chatBodyRef.current.scrollHeight, behavior: 'smooth' });
+  }
+}, [chatHistory]);
 
   return (
-    <div className="container">
+    <div className={`container ${showChatbot ? 'show-chatbot' : ''}`}>
+      
+      <button onClick={() => setShowChatbot(prev => !prev)} id="chatbot-toggler">
+        <span className="material-symbols-outlined">mode_comment</span>
+        <span className="material-symbols-outlined">close</span>
+      </button>
+
       <div className="chatbot-popup">
         <div className="chat-header">
           <div className="header-info">
             <ChatbotIcon />
             <h2 className="logo-text">Sabichão</h2>
           </div>
-          <button className="material-symbols-outlined">keyboard_arrow_down</button>
+          <button onClick={() => setShowChatbot(prev => !prev)} className="material-symbols-outlined">keyboard_arrow_down</button>
         </div>
 
-        <div className="chat-body">
+        <div ref={chatBodyRef} className="chat-body">
           <div className="message bot-message">
               <ChatbotIcon />
               <p className="message-text">Olá! Eu sou o Sabichão, seu assistente virtual. Como posso ajudar você hoje?</p>
