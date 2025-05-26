@@ -17,7 +17,7 @@ function App() {
     ]);
   }
 
-  const generateBotResponse = async (history) => {
+  const generateBotResponse = async (history: { role: string; text: string; }[]) => {
   const systemMessage = {
     role: "system",
     content: `
@@ -34,7 +34,7 @@ function App() {
 
   const formattedHistory = [
     systemMessage,
-    ...history.map(({ role, text }) => ({ role, content: text }))
+    ...history.map(({ role, text }: { role: string; text: string }) => ({ role, content: text }))
   ];
 
   const requestOptions = {

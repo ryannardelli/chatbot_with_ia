@@ -1,7 +1,9 @@
 import { useRef } from "react";
 
 type ChatFormProps = {
-    setChatHistory: React.Dispatch<React.SetStateAction<{ role: string; text: string }[]>>
+    chatHistory: { role: string; text: string }[];
+    setChatHistory: React.Dispatch<React.SetStateAction<{ role: string; text: string }[]>>;
+    generateBotResponse: (history: { role: string; text: string }[]) => void;
 };
 
 const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }: ChatFormProps) => {
