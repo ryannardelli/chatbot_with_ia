@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# 🤖 Chatbot Educacional com IA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um chatbot inteligente, divertido e descontraído criado para ajudar os alunos com suas dúvidas utilizando a poderosa API da OpenAI. 💬✨
 
-Currently, two official plugins are available:
+## 📚 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto é um **chatbot educacional** que conversa com os alunos de forma leve e amigável, tornando a aprendizagem mais interativa. Ele utiliza a API da OpenAI para responder perguntas, explicar conteúdos e até dar aquela força antes da prova!
 
-## Expanding the ESLint configuration
+Ideal para ser integrado em plataformas educacionais ou sites de apoio ao estudo.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Funcionalidades
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Respostas em linguagem natural e acessível.
+- Explicações didáticas sobre diversos assuntos escolares.
+- Interação divertida para manter o aluno engajado.
+- Baseado na tecnologia de IA da OpenAI (GPT).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Tecnologias Utilizadas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React / TypeScript / Vite**
+- **API da OpenAI**
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🛠️ Como Usar
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/ryannardelli/chatbot_with_ia.git
+
+2. Clone o repositório:
+   ```bash
+   npm install
+
+3. Configure a sua chave da OpenAI no arquivo .env:
+   ```bash
+   OPENAI_API_KEY=sua-chave-aqui
+
+4. Inicie o Projeto:
+   ```bash
+   npm run dev
+
+## 🌐 Acesse o Projeto
+
+👉 [Clique aqui para acessar o chatbot online](https://sabichao.netlify.app/)
